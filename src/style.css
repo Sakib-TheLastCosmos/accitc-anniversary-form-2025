@@ -74,11 +74,13 @@ html, body{
     justify-content: space-between; /* Distribute space evenly */
     width: 40%; /* Adjust width as necessary */
     max-width: 800px; /* Set a max-width to prevent it from becoming too wide */
+    min-width: 250px;
     padding: 20px;
     margin-top: 30px;
     background-color: #fff;
     /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
     border-radius: 8px;
+    gap: 20px;
 }
 
 .event-details div {
@@ -320,6 +322,7 @@ i {
     background-color: #f1f1f1;
     border: none;
     width: 50%;
+    min-width: 250px;
     outline: none;
     font-size: 14px !important;
   }
