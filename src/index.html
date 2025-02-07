@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+
+
+    <div class="container">
+        <div class="wrapper">
+          <ul class="steps">
+            <li class="is-active">Personal Details</li>
+            <li>Choose Menu</li>
+            <li>Done!</li>
+          </ul>
+          <form class="form-wrapper">
+            <fieldset class="section is-active" style="display: flex; flex-direction: column; align-items: center;">
+              <h1 style="color: #3498db; font-weight: 500;">Welcome to ACCITC!</h1>
+              <h4 style="width: 70%;">Fill out this form to attend the 10 year grand anniversary of Adamjee Cantonment College IT Club.</h4>
+
+              <input type="text" name="name" id="name" placeholder="Name">
+
+              <div class="dropdown">
+                <label for="dropdownSelect" class="dropdown-label">Select your session</label>
+                <select id="dropdownSelect" class="dropdown-select">
+                    <option value="2015-16">2015-16</option>
+                    <option value="2016-17">2016-17</option>
+                    <option value="2017-18">2017-18</option>
+                    <option value="2018-19">2018-19</option>
+                    <option value="2019-20">2019-20</option>
+                    <option value="2020-21">2020-21</option>
+                    <option value="2021-22">2021-22</option>
+                    <option value="2022-23">2022-23</option>
+                    <option value="2023-24">2023-24</option>
+                    <option value="2024-25">2024-25</option>
+                    <option value="2025-26">2025-26 (Member) </option>
+                </select>
+            </div>
+
+            <input type="text" name="post" id="post" placeholder="Panel Designation">
+
+            <input type="text" name="phone" id="phone" placeholder="Mobile Number">
+
+            <input type="text" name="mail" id="mail" placeholder="Email Address">
+
+            <input type="text" name="fb" id="fb" placeholder="Facebook ID Link">
+
+
+
+            <div class="event-details">
+                <div class="date">
+                    <i class="fas fa-calendar-alt"></i> <span>2025-02-15</span>
+                </div>
+                <div class="time">
+                    <i class="fas fa-clock"></i> <span>02:30 PM</span>
+                </div>
+            </div>
+
+            <div class="place">
+              <i class="fas fa-map-marker-alt"></i> <span>Hawa Rooftop Restaurant, Mirpur 12</span>
+          </div>
+
+              <div class="button button-1">Next</div>
+            </fieldset>
+            <fieldset class="section">
+              <h3>Account Type</h3>
+              <div class="row cf">
+
+                <img class="six col" src="assets/images/1_1.jpg" alt="">
+                <img class="six col" src="assets/images/2.jpg" alt="">
+
+
+                <div class="six col">
+                  <input type="radio" name="r1" id="r1" value="Platter 1" checked>
+                  <label for="r1">
+                    <h3>Platter 1</h3>
+
+                    <p>Chicken Fried Rice with sizzling 2:1</p>
+                  </label>
+                </div>
+
+
+                <div class="six col" style="margin-bottom: 20px;">
+                  <input type="radio" name="r1" id="r2" value="Platter 2">
+                  <label for="r2">
+                    <h3>Platter 2</h3>
+
+                    <p>Chicken Hyderabadi Biriyani</p>
+                  </label>
+                </div>
+
+                <h5>NB: Total cost include the platter, cakes, drinks, and decorations.</h5>
+
+
+
+              </div>
+             
+              <div class="payment">
+                <!-- <h4>Pay using : </h4> -->
+
+                <button class="button bkash button-2">Pay 550.00 BDT</button>
+              </div>
+
+            </fieldset>
+            <fieldset class="section">
+              <h3 style="color: #d12053; font-weight: 600;">Total Payment: 550.00 BDT</h3>
+              <p>Scan this QR code</p>
+              <img class="payment_img" style="width: 40%;" src="assets/images/bkash_qr.jpeg" alt="">
+
+              <h4>Or pay to: <span style="color: #d12053;">01604420800</span></h4>
+
+              <input type="text" name="transactionID" id="transID" placeholder="Bkash Transation ID">
+              <input class="submit button button-3" type="submit" value="Submit">
+            </fieldset>
+            <fieldset class="section" style="display: flex; flex-direction: column; align-items: center;">
+              <h3 style="color: #3498db; font-weight: 600;">Your Registration has been completed!</h3>
+              <p style="width: 70%;">You will be emailed within 24-48 hours about the event pass and necessary details. We are looking forward to seeing you at our grand anniversary of 10 years of ACCITC!</p>
+              <!-- <div class="button">Reset Form</div> -->
+
+              <h4 style="color: #d12053; font-weight: 600; margin-bottom: 10px; margin-top: 30px;">For any inquiries, contact</h4>
+
+              <div class="contact eleven">
+                <div class="col six">
+                  <h4 style="margin-bottom: 10px;">Rumman Mahmud Ratul</h4>
+                  <p>CCP, Administrator, ACCITC</p>
+                  <p>01648494005</p>
+                </div>
+
+                <div class="col six">
+                  <h4 style="margin-bottom: 10px;">Abrar Foysal</h4>
+                  <p>Co Administrator, ACCITC</p>
+                  <p>01748544594</p>
+                </div>
+              </div>  
+
+              <p style="color: #3498db; font-weight: 600;">You can also reach out <a style="color: #3498db;" href="https://www.facebook.com/accitc" target="_blank"><u>Facebook Page</u></a> or mail us at: itclub@acc.edu.bd</p>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </body>
+</html>
