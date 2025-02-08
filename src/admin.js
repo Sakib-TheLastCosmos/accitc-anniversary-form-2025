@@ -61,6 +61,8 @@ $(document).ready(async () => {
     userInput = prompt("Enter Admin Password:");
   } while (userInput !== password);
 
+
+
   const querySnapshot = await getDocs(collection(db, "members"));
   const tableBody = document.querySelector("tbody");
 
@@ -104,6 +106,9 @@ $(document).ready(async () => {
     else row.innerHTML += `<td style="font-weight: 600; color: red;">${person.status}</td>`
 
     tableBody.appendChild(row);
+
+    $(".data").width($("table").width());
+
     index++;
   });
 

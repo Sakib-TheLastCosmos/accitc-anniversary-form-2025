@@ -50,7 +50,6 @@ tr:nth-child(even) {
 }
 
 .confirm_btn {
-    margin: 10%;
     padding: 5px 10px;
     cursor: pointer;
     background: #d12053;
