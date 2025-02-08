@@ -73,4 +73,5 @@ export default {
     }),
   ],
   mode: 'development',  // or 'production'
+  devtool: false,
 };

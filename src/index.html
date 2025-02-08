@@ -20,14 +20,28 @@
 
 
     <div class="container">
+
+
+
+    
         <div class="wrapper">
           <ul class="steps">
-            <li class="is-active">Personal Details</li>
+            <li class="is-active">Sign In</li>
+            <li>Personal Details</li>
             <li>Choose Menu</li>
             <li>Make payment</li>
           </ul>
           <form class="form-wrapper">
-            <fieldset class="section is-active" style="display: flex; flex-direction: column; align-items: center;">
+            <fieldset style="height: 100%;" class="section is-active">
+              <div class="auth-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                <button class="button-0" id="google-signin-btn" style="background-color: #dddddd; color: black; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
+                    <i class="fab fa-google" style="margin-right: 8px;"></i> Sign in with Google
+                </button>
+                <p class="user-info" style="margin-top: 10px; font-weight: bold; color: #555;"></p>
+            </div>
+            </fieldset>
+
+            <fieldset class="section" style="display: flex; flex-direction: column; align-items: center;">
               <h1 style="color: #3498db; font-weight: 500;">Welcome to ACCITC!</h1>
               <h4 style="width: 70%;">Fill out this form to attend the 10 year grand anniversary of Adamjee Cantonment College IT Club.</h4>
 
