@@ -41878,7 +41878,7 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
                 case 3:
                   result = _context.sent;
                   user = result.user;
-                  adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com".split(","); // Check if the user is an admin (for example, by checking the email or UID)
+                  adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(","); // Check if the user is an admin (for example, by checking the email or UID)
                   if (adminEmailArr.includes(user.email)) {// You can replace this with a list of admin emails
                     // Proceed with loading the admin data
                   } else {
@@ -41903,7 +41903,7 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
           };
         }(); // On Auth State Change (to keep track of logged-in user)
         (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.onAuthStateChanged)(auth, function (user) {
-          var adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com".split(",");
+          var adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(",");
           if (user && adminEmailArr.includes(user.email)) {
             // Replace with your admin email
             loadAdminData();
@@ -41988,7 +41988,7 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
                               image_url: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=".concat(id)
                             };
                             _context2.prev = 6;
-                            adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com".split(",");
+                            adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(",");
                             if (!((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser && adminEmailArr.includes((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser.email))) {
                               _context2.next = 18;
                               break;
