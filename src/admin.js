@@ -32,7 +32,6 @@ $(document).ready(async () => {
     const docRef = doc(db, "members", verifyId);
     const docSnap = await getDoc(docRef);
 
-    await updateDoc(docRef, { status: "Present" });
 
     if (docSnap.exists() && docSnap.data().is_confirmed) {
       const person = docSnap.data();
@@ -47,6 +46,8 @@ $(document).ready(async () => {
         <p><strong>Date:</strong> ${person.date}</p>
         <p><strong>Transaction ID:</strong> ${person.transaction_id}</p>
       `);
+
+      await updateDoc(docRef, { status: "Present" });
     } else {
       $("body").html("<h1 style='color: red;'>Invalid or Unconfirmed Registration</h1>");
     }
