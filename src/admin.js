@@ -91,7 +91,7 @@ emailjs.init(process.env.EMAILJS_API_KEY);
         <td>${person.post}</td>
         <td>${person.phone}</td>
         <td>${person.email}</td>
-        <td><a href="https://${person.facebook}" target="_blank">Profile</a></td>
+        <td><a href="${person.facebook}" target="_blank">Profile</a></td>
         <td>${person.platter}</td>
         <td>${person.date}</td>
         <td>${person.transaction_id}</td>
