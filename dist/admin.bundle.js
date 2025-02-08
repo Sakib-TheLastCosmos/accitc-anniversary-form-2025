@@ -41860,265 +41860,340 @@ var provider = new firebase_auth__WEBPACK_IMPORTED_MODULE_4__.GoogleAuthProvider
 
 // Initialize EmailJS
 emailjs_com__WEBPACK_IMPORTED_MODULE_5__["default"].init("YgSqWRfxSB3aHOKWL");
-$(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-  var signInWithGoogle, loadAdminData;
-  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-    while (1) switch (_context5.prev = _context5.next) {
-      case 0:
-        // Google Sign-In Authentication
-        signInWithGoogle = /*#__PURE__*/function () {
-          var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-            var result, user, adminEmailArr;
-            return _regeneratorRuntime().wrap(function _callee$(_context) {
-              while (1) switch (_context.prev = _context.next) {
-                case 0:
-                  _context.prev = 0;
-                  _context.next = 3;
-                  return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.signInWithPopup)(auth, provider);
-                case 3:
-                  result = _context.sent;
-                  user = result.user;
-                  adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(","); // Check if the user is an admin (for example, by checking the email or UID)
-                  if (adminEmailArr.includes(user.email)) {// You can replace this with a list of admin emails
-                    // Proceed with loading the admin data
-                  } else {
-                    alert('You do not have access to this admin panel.');
-                    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.signOut)(auth);
-                  }
-                  _context.next = 13;
-                  break;
-                case 9:
-                  _context.prev = 9;
-                  _context.t0 = _context["catch"](0);
-                  console.error("Google Sign-In Error:", _context.t0);
-                  alert("Authentication failed! Please try again.");
-                case 13:
-                case "end":
-                  return _context.stop();
-              }
-            }, _callee, null, [[0, 9]]);
-          }));
-          return function signInWithGoogle() {
-            return _ref2.apply(this, arguments);
-          };
-        }(); // On Auth State Change (to keep track of logged-in user)
-        (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.onAuthStateChanged)(auth, function (user) {
-          var adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(",");
-          if (user && adminEmailArr.includes(user.email)) {
-            // Replace with your admin email
-            loadAdminData();
-            $("#google-sign-in-btn").hide();
-          } else if (user) {
+
+// Google Sign-In Authentication
+var signInWithGoogle = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var result, user, adminEmailArr;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.signInWithPopup)(auth, provider);
+        case 3:
+          result = _context.sent;
+          user = result.user;
+          adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal9c20@gmail.com,mahmudratul46@gmail.com".split(","); // Check if the user is an admin (for example, by checking the email or UID)
+          if (adminEmailArr.includes(user.email)) {// You can replace this with a list of admin emails
+            // Proceed with loading the admin data
+          } else {
             alert('You do not have access to this admin panel.');
             (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.signOut)(auth);
           }
-        });
+          _context.next = 13;
+          break;
+        case 9:
+          _context.prev = 9;
+          _context.t0 = _context["catch"](0);
+          console.error("Google Sign-In Error:", _context.t0);
+          alert("Authentication failed! Please try again.");
+        case 13:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[0, 9]]);
+  }));
+  return function signInWithGoogle() {
+    return _ref.apply(this, arguments);
+  };
+}();
 
-        // Function to load admin data
-        loadAdminData = /*#__PURE__*/function () {
-          var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-            var querySnapshot, tableBody, index, total_confirmed, platter1, platter2, present, absent;
-            return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-              while (1) switch (_context4.prev = _context4.next) {
-                case 0:
-                  _context4.next = 2;
-                  return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDocs)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "members"));
-                case 2:
-                  querySnapshot = _context4.sent;
-                  tableBody = document.querySelector("tbody");
-                  index = 1;
-                  total_confirmed = 0, platter1 = 0, platter2 = 0, present = 0, absent = 0;
-                  querySnapshot.forEach(function (doc) {
-                    var person = doc.data();
-                    if (!person.status) person.status = "Absent";
-                    var row = document.createElement("tr");
-                    if (person.is_confirmed) total_confirmed++;
-                    if (person.platter === 'Platter 1') platter1++;
-                    if (person.platter === 'Platter 2') platter2++;
-                    if (person.status == "Present") present++;else absent++;
-                    row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"https://").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
-                    if (person.is_confirmed) {
-                      row.innerHTML += "<td class='payment_confirmed' style='color: green; font-weight: 600;'>Confirmed</td>";
-                    } else {
-                      row.innerHTML += "<td class='payment_confirmed'><button style=\"background: green;\" id=".concat(doc.id, " class=\"confirm_btn confirm_btnn\">Confirm</button> <button id=").concat(doc.id, "  class=\"confirm_btn delete_btn\">Delete</button></td>");
+// On Auth State Change (to keep track of logged-in user)
+(0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.onAuthStateChanged)(auth, function (user) {
+  var adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal9c20@gmail.com,mahmudratul46@gmail.com".split(",");
+  if (user && adminEmailArr.includes(user.email)) {
+    // Replace with your admin email
+    loadAdminData();
+    $("#google-sign-in-btn").hide();
+  } else if (user) {
+    alert('You do not have access to this admin panel.');
+    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.signOut)(auth);
+  }
+});
+
+// Function to load admin data
+var loadAdminData = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+    var querySnapshot, tableBody, index, total_confirmed, platter1, platter2, present, absent;
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
+        case 0:
+          _context4.next = 2;
+          return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDocs)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "members"));
+        case 2:
+          querySnapshot = _context4.sent;
+          tableBody = document.querySelector("tbody");
+          index = 1;
+          total_confirmed = 0, platter1 = 0, platter2 = 0, present = 0, absent = 0;
+          querySnapshot.forEach(function (doc) {
+            var person = doc.data();
+            if (!person.status) person.status = "Absent";
+            var row = document.createElement("tr");
+            if (person.is_confirmed) total_confirmed++;
+            if (person.platter === 'Platter 1') platter1++;
+            if (person.platter === 'Platter 2') platter2++;
+            if (person.status == "Present") present++;else absent++;
+            row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"https://").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
+            if (person.is_confirmed) {
+              row.innerHTML += "<td class='payment_confirmed' style='color: green; font-weight: 600;'>Confirmed</td>";
+            } else {
+              row.innerHTML += "<td class='payment_confirmed'><button style=\"background: green;\" id=".concat(doc.id, " class=\"confirm_btn confirm_btnn\">Confirm</button> <button id=").concat(doc.id, "  class=\"confirm_btn delete_btn\">Delete</button></td>");
+            }
+            if (person.status == "Present") row.innerHTML += "<td style=\"font-weight: 600; color: green;\">".concat(person.status, "</td>");else row.innerHTML += "<td style=\"font-weight: 600; color: red;\">".concat(person.status, "</td>");
+            tableBody.appendChild(row);
+            $(".data").width($("table").width());
+            index++;
+          });
+          $('#total_reg').html(index - 1);
+          $('#total_confirmed').html(total_confirmed);
+          $('#total_payment').html((550 * total_confirmed).toFixed(2));
+          $('#platter-1').html(platter1);
+          $('#platter-2').html(platter2);
+          $('#total-present').html(present);
+          $('#total-absent').html(absent);
+
+          // Attach click event listener to confirm buttons
+          $(".confirm_btnn").click(/*#__PURE__*/function () {
+            var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+              var isConfirmed, id, person, templateParams, adminEmailArr, response, personRef;
+              return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                while (1) switch (_context2.prev = _context2.next) {
+                  case 0:
+                    // Ask for confirmation before proceeding
+                    isConfirmed = confirm("Are you sure you want to confirm this person?");
+                    if (isConfirmed) {
+                      _context2.next = 3;
+                      break;
                     }
-                    if (person.status == "Present") row.innerHTML += "<td style=\"font-weight: 600; color: green;\">".concat(person.status, "</td>");else row.innerHTML += "<td style=\"font-weight: 600; color: red;\">".concat(person.status, "</td>");
-                    tableBody.appendChild(row);
-                    $(".data").width($("table").width());
-                    index++;
+                    return _context2.abrupt("return");
+                  case 3:
+                    // If user cancels, do nothing
+                    id = e.target.id;
+                    person = querySnapshot.docs.find(function (doc) {
+                      return doc.id === id;
+                    }).data();
+                    templateParams = {
+                      to_name: person.name,
+                      name: person.name,
+                      session: person.session,
+                      post: person.post,
+                      phone: person.phone,
+                      email: person.email,
+                      platter: person.platter,
+                      date: person.date,
+                      transaction_id: person.transaction_id,
+                      image_url: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=".concat(id)
+                    };
+                    _context2.prev = 6;
+                    adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal9c20@gmail.com,mahmudratul46@gmail.com".split(",");
+                    if (!((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser && adminEmailArr.includes((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser.email))) {
+                      _context2.next = 18;
+                      break;
+                    }
+                    _context2.next = 11;
+                    return emailjs_com__WEBPACK_IMPORTED_MODULE_5__["default"].send("service_4tltiah", "template_c3tuo1r", templateParams);
+                  case 11:
+                    response = _context2.sent;
+                    console.log('Email sent successfully:', response);
+                    personRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "members", id);
+                    _context2.next = 16;
+                    return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(personRef, {
+                      is_confirmed: true
+                    });
+                  case 16:
+                    $("#".concat(id)).parent().html("Confirmed");
+                    location.reload();
+                  case 18:
+                    _context2.next = 23;
+                    break;
+                  case 20:
+                    _context2.prev = 20;
+                    _context2.t0 = _context2["catch"](6);
+                    alert('Error sending email:', _context2.t0);
+                  case 23:
+                  case "end":
+                    return _context2.stop();
+                }
+              }, _callee2, null, [[6, 20]]);
+            }));
+            return function (_x) {
+              return _ref3.apply(this, arguments);
+            };
+          }());
+          $(".delete_btn").click(/*#__PURE__*/function () {
+            var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
+              var isConfirmed, id, personRef, personSnap, person, transactionId, userUID, transRef, transDoc, transData, updatedTransIDs, updatedUIDs;
+              return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                while (1) switch (_context3.prev = _context3.next) {
+                  case 0:
+                    // Ask for confirmation before deleting
+                    isConfirmed = confirm("Are you sure you want to delete this person and their transaction?");
+                    if (isConfirmed) {
+                      _context3.next = 3;
+                      break;
+                    }
+                    return _context3.abrupt("return");
+                  case 3:
+                    // If user cancels, do nothing
+
+                    e.preventDefault();
+
+                    // Get the ID of the button (which corresponds to the document ID in Firestore)
+                    id = e.target.id;
+                    _context3.prev = 5;
+                    // 1. Delete the document from "members"
+                    personRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "members", id);
+                    _context3.next = 9;
+                    return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(personRef);
+                  case 9:
+                    personSnap = _context3.sent;
+                    person = personSnap.data();
+                    _context3.next = 13;
+                    return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.deleteDoc)(personRef);
+                  case 13:
+                    // Use deleteDoc to remove the document
+                    // 2. Remove the transaction ID and UID from "data/transID"
+                    transactionId = person.transaction_id; // Assuming the transaction ID is stored in a data attribute
+                    userUID = id; // Assuming the UID is stored in a data attribute as well
+                    transRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "data", "transID"); // Assuming you are storing transaction IDs and UIDs in a specific document
+                    _context3.next = 18;
+                    return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(transRef);
+                  case 18:
+                    transDoc = _context3.sent;
+                    if (!transDoc.exists()) {
+                      _context3.next = 25;
+                      break;
+                    }
+                    transData = transDoc.data(); // Remove the transaction ID and UID from their respective arrays
+                    updatedTransIDs = transData.IDs.filter(function (trans) {
+                      return trans !== transactionId;
+                    }); // Remove the transaction ID
+                    updatedUIDs = transData.UIDs.filter(function (uid) {
+                      return uid !== userUID;
+                    }); // Remove the UID
+                    // Update the "transID" document with the updated arrays
+                    _context3.next = 25;
+                    return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(transRef, {
+                      IDs: updatedTransIDs,
+                      UIDs: updatedUIDs
+                    });
+                  case 25:
+                    alert("Document, transaction ID, and UID deleted successfully.");
+                    location.reload(); // Refresh the page to reflect changes
+                    _context3.next = 33;
+                    break;
+                  case 29:
+                    _context3.prev = 29;
+                    _context3.t0 = _context3["catch"](5);
+                    console.error("Error deleting document:", _context3.t0);
+                    alert("Error deleting the document. Please try again.");
+                  case 33:
+                  case "end":
+                    return _context3.stop();
+                }
+              }, _callee3, null, [[5, 29]]);
+            }));
+            return function (_x2) {
+              return _ref4.apply(this, arguments);
+            };
+          }());
+        case 16:
+        case "end":
+          return _context4.stop();
+      }
+    }, _callee4);
+  }));
+  return function loadAdminData() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+// Google Sign-In Button
+$("#google-sign-in-btn").click(signInWithGoogle);
+$(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+    while (1) switch (_context6.prev = _context6.next) {
+      case 0:
+        // Firebase Auth state change listener to check if the user is signed in
+        (0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.onAuthStateChanged)(auth, /*#__PURE__*/function () {
+          var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(user) {
+            var adminEmailArr, urlParams, verifyId, docRef, docSnap, person;
+            return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+              while (1) switch (_context5.prev = _context5.next) {
+                case 0:
+                  adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal9c20@gmail.com,mahmudratul46@gmail.com".split(",");
+                  if (!(user && adminEmailArr.includes(user.email))) {
+                    _context5.next = 27;
+                    break;
+                  }
+                  // User is signed in and is an admin, proceed with verification logic
+                  urlParams = new URLSearchParams(window.location.search);
+                  verifyId = urlParams.get('verify');
+                  if (!verifyId) {
+                    _context5.next = 25;
+                    break;
+                  }
+                  // User is verifying their registration
+                  docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "members", verifyId);
+                  _context5.next = 8;
+                  return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(docRef);
+                case 8:
+                  docSnap = _context5.sent;
+                  if (!(docSnap.exists() && docSnap.data().is_confirmed)) {
+                    _context5.next = 23;
+                    break;
+                  }
+                  person = docSnap.data(); // Update the status to "Present"
+                  _context5.prev = 11;
+                  _context5.next = 14;
+                  return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(docRef, {
+                    status: "Present"
                   });
-                  $('#total_reg').html(index - 1);
-                  $('#total_confirmed').html(total_confirmed);
-                  $('#total_payment').html((550 * total_confirmed).toFixed(2));
-                  $('#platter-1').html(platter1);
-                  $('#platter-2').html(platter2);
-                  $('#total-present').html(present);
-                  $('#total-absent').html(absent);
-
-                  // Attach click event listener to confirm buttons
-                  $(".confirm_btnn").click(/*#__PURE__*/function () {
-                    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
-                      var isConfirmed, id, person, templateParams, adminEmailArr, response, personRef;
-                      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                        while (1) switch (_context2.prev = _context2.next) {
-                          case 0:
-                            // Ask for confirmation before proceeding
-                            isConfirmed = confirm("Are you sure you want to confirm this person?");
-                            if (isConfirmed) {
-                              _context2.next = 3;
-                              break;
-                            }
-                            return _context2.abrupt("return");
-                          case 3:
-                            // If user cancels, do nothing
-                            id = e.target.id;
-                            person = querySnapshot.docs.find(function (doc) {
-                              return doc.id === id;
-                            }).data();
-                            templateParams = {
-                              to_name: person.name,
-                              name: person.name,
-                              session: person.session,
-                              post: person.post,
-                              phone: person.phone,
-                              email: person.email,
-                              platter: person.platter,
-                              date: person.date,
-                              transaction_id: person.transaction_id,
-                              image_url: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=".concat(id)
-                            };
-                            _context2.prev = 6;
-                            adminEmailArr = "sakibulhasan159@gmail.com,annonymous.sakibulhasan@gmail.com,abrarfoysal11c@gmail.com,mahmudratul46@gmail.com".split(",");
-                            if (!((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser && adminEmailArr.includes((0,firebase_auth__WEBPACK_IMPORTED_MODULE_4__.getAuth)().currentUser.email))) {
-                              _context2.next = 18;
-                              break;
-                            }
-                            _context2.next = 11;
-                            return emailjs_com__WEBPACK_IMPORTED_MODULE_5__["default"].send("service_4tltiah", "template_c3tuo1r", templateParams);
-                          case 11:
-                            response = _context2.sent;
-                            console.log('Email sent successfully:', response);
-                            personRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "members", id);
-                            _context2.next = 16;
-                            return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(personRef, {
-                              is_confirmed: true
-                            });
-                          case 16:
-                            $("#".concat(id)).parent().html("Confirmed");
-                            location.reload();
-                          case 18:
-                            _context2.next = 23;
-                            break;
-                          case 20:
-                            _context2.prev = 20;
-                            _context2.t0 = _context2["catch"](6);
-                            alert('Error sending email:', _context2.t0);
-                          case 23:
-                          case "end":
-                            return _context2.stop();
-                        }
-                      }, _callee2, null, [[6, 20]]);
-                    }));
-                    return function (_x) {
-                      return _ref4.apply(this, arguments);
-                    };
-                  }());
-                  $(".delete_btn").click(/*#__PURE__*/function () {
-                    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(e) {
-                      var isConfirmed, id, personRef, personSnap, person, transactionId, userUID, transRef, transDoc, transData, updatedTransIDs, updatedUIDs;
-                      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                        while (1) switch (_context3.prev = _context3.next) {
-                          case 0:
-                            // Ask for confirmation before deleting
-                            isConfirmed = confirm("Are you sure you want to delete this person and their transaction?");
-                            if (isConfirmed) {
-                              _context3.next = 3;
-                              break;
-                            }
-                            return _context3.abrupt("return");
-                          case 3:
-                            // If user cancels, do nothing
-
-                            e.preventDefault();
-
-                            // Get the ID of the button (which corresponds to the document ID in Firestore)
-                            id = e.target.id;
-                            _context3.prev = 5;
-                            // 1. Delete the document from "members"
-                            personRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "members", id);
-                            _context3.next = 9;
-                            return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(personRef);
-                          case 9:
-                            personSnap = _context3.sent;
-                            person = personSnap.data();
-                            _context3.next = 13;
-                            return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.deleteDoc)(personRef);
-                          case 13:
-                            // Use deleteDoc to remove the document
-                            // 2. Remove the transaction ID and UID from "data/transID"
-                            transactionId = person.transaction_id; // Assuming the transaction ID is stored in a data attribute
-                            userUID = id; // Assuming the UID is stored in a data attribute as well
-                            transRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(db, "data", "transID"); // Assuming you are storing transaction IDs and UIDs in a specific document
-                            _context3.next = 18;
-                            return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(transRef);
-                          case 18:
-                            transDoc = _context3.sent;
-                            if (!transDoc.exists()) {
-                              _context3.next = 25;
-                              break;
-                            }
-                            transData = transDoc.data(); // Remove the transaction ID and UID from their respective arrays
-                            updatedTransIDs = transData.IDs.filter(function (trans) {
-                              return trans !== transactionId;
-                            }); // Remove the transaction ID
-                            updatedUIDs = transData.UIDs.filter(function (uid) {
-                              return uid !== userUID;
-                            }); // Remove the UID
-                            // Update the "transID" document with the updated arrays
-                            _context3.next = 25;
-                            return (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(transRef, {
-                              IDs: updatedTransIDs,
-                              UIDs: updatedUIDs
-                            });
-                          case 25:
-                            alert("Document, transaction ID, and UID deleted successfully.");
-                            location.reload(); // Refresh the page to reflect changes
-                            _context3.next = 33;
-                            break;
-                          case 29:
-                            _context3.prev = 29;
-                            _context3.t0 = _context3["catch"](5);
-                            console.error("Error deleting document:", _context3.t0);
-                            alert("Error deleting the document. Please try again.");
-                          case 33:
-                          case "end":
-                            return _context3.stop();
-                        }
-                      }, _callee3, null, [[5, 29]]);
-                    }));
-                    return function (_x2) {
-                      return _ref5.apply(this, arguments);
-                    };
-                  }());
-                case 16:
+                case 14:
+                  $("body").html("\n                <h1 style=\"color: green;\">Registration Confirmed</h1>\n                <p><strong>Name:</strong> ".concat(person.name, "</p>\n                <p><strong>Session:</strong> ").concat(person.session, "</p>\n                <p><strong>Post:</strong> ").concat(person.post, "</p>\n                <p><strong>Phone:</strong> ").concat(person.phone, "</p>\n                <p><strong>Email:</strong> ").concat(person.email, "</p>\n                <p><strong>Platter:</strong> ").concat(person.platter, "</p>\n                <p><strong>Date:</strong> ").concat(person.date, "</p>\n                <p><strong>Transaction ID:</strong> ").concat(person.transaction_id, "</p>\n              "));
+                  _context5.next = 21;
+                  break;
+                case 17:
+                  _context5.prev = 17;
+                  _context5.t0 = _context5["catch"](11);
+                  console.error("Error updating the status:", _context5.t0);
+                  $("body").html("<h1>There was an error confirming your registration. Please try again.</h1>");
+                case 21:
+                  _context5.next = 24;
+                  break;
+                case 23:
+                  $("body").html("<h1 style='color: red;'>Invalid or Unconfirmed Registration</h1>");
+                case 24:
+                  return _context5.abrupt("return");
+                case 25:
+                  _context5.next = 28;
+                  break;
+                case 27:
+                  if (user) {
+                    // If the user is signed in but not an admin
+                    alert("You are not authorized to view this page.");
+                    window.location.href = '/'; // Redirect to home or login page
+                  } else {
+                    // If no user is signed in
+                    alert("You must be signed in as an admin to view this page.");
+                    window.location.href = '/'; // Redirect to home or login page
+                  }
+                case 28:
                 case "end":
-                  return _context4.stop();
+                  return _context5.stop();
               }
-            }, _callee4);
+            }, _callee5, null, [[11, 17]]);
           }));
-          return function loadAdminData() {
-            return _ref3.apply(this, arguments);
+          return function (_x3) {
+            return _ref6.apply(this, arguments);
           };
-        }(); // Add Google Sign-In button event listener
-        document.getElementById("google-sign-in-btn").addEventListener("click", signInWithGoogle);
-      case 4:
+        }());
+      case 1:
       case "end":
-        return _context5.stop();
+        return _context6.stop();
     }
-  }, _callee5);
+  }, _callee6);
 })));
-
-// signOut(auth).then(() => console.log("Signed out successfully")).catch(error => console.error("Sign-out error:", error));
 })();
 
 /******/ })()
