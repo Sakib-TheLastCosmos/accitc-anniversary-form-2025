@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { doc, getFirestore, getDoc, addDoc, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 
-import './style.css';
+import './index.css';
 
 
 // Access Firebase config from environment variables

@@ -1,20 +1,26 @@
-// webpack.config.js
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Dotenv from 'dotenv-webpack';  // Import dotenv-webpack plugin
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';  // Import MiniCssExtractPlugin
 
 export default {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',      // Entry point for index.html
+    admin: './src/admin.js',      // Entry point for admin.html
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js', // This will create index.bundle.js and admin.bundle.js
     path: path.resolve('dist'),
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,  // Extract CSS to separate file
+          'css-loader',                 // Load the CSS files
+        ],
       },
 
       {
@@ -34,9 +40,21 @@ export default {
     ],
   },
   plugins: [
+    // HtmlWebpackPlugin for index.html
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: 'index.html',  // Output file for index page
+      chunks: ['index'],       // Include the index.bundle.js
     }),
+
+    // HtmlWebpackPlugin for admin.html
+    new HtmlWebpackPlugin({
+      template: './src/admin.html',
+      filename: 'admin.html',  // Output file for admin page
+      chunks: ['admin'],       // Include the admin.bundle.js
+    }),
+
+    // Copy assets to the dist directory
     new CopyWebpackPlugin({
         patterns: [
           {
@@ -45,7 +63,14 @@ export default {
           },
         ],
       }),
-    new Dotenv(),  // Add dotenv-webpack to load environment variables
+
+    // Add dotenv-webpack to load environment variables
+    new Dotenv(),
+
+    // MiniCssExtractPlugin to extract CSS into separate files
+    new MiniCssExtractPlugin({
+      filename: '[name].css',  // This will create index.css and admin.css
+    }),
   ],
   mode: 'development',  // or 'production'
 };

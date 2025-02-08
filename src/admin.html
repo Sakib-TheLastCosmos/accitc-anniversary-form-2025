@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="unsafe-none">
+
+    <title>People List</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>People Data</h2>
+        <div class="data" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <h4>Total Registration: <span id="total_reg"></span></h4>
+            <h4>Total Confirmed: <span id="total_confirmed"></span></h4>
+            <h4>Total Payment Received: <span id="total_payment"></span></h4>
+            <h4>Platter 1: <span id="platter-1"></span> (Divide by 2)</h4>
+            <h4>Platter 2: <span id="platter-2"></span></h4>    
+
+            <h4>Present: <span id="total-present"></span></h4>
+            <h4>Absent: <span id="total-absent"></span></h4>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl</th>
+                    <th>Name</th>
+                    <th>Session</th>
+                    <th>Designation</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Facebook</th>
+                    <th>Platter</th>
+                    <th>Date</th>
+                    <th>Transaction ID</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                                                                     </tr>
+            </thead>
+            <tbody>
+
+                <!-- Duplicate this <tr> block for more people -->
+                
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"></script>
+    <script async defer src="https://accounts.google.com/gsi/client"></script>
+    
+
+</body>
+</html>
