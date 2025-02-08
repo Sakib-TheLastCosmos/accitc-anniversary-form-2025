@@ -41934,7 +41934,7 @@ var loadAdminData = /*#__PURE__*/function () {
             if (person.platter === 'Platter 1') platter1++;
             if (person.platter === 'Platter 2') platter2++;
             if (person.status == "Present") present++;else absent++;
-            row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"https://").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
+            row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
             if (person.is_confirmed) {
               row.innerHTML += "<td class='payment_confirmed' style='color: green; font-weight: 600;'>Confirmed</td>";
             } else {
