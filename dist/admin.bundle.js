@@ -42172,11 +42172,11 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
                   if (user) {
                     // If the user is signed in but not an admin
                     alert("You are not authorized to view this page.");
-                    window.location.href = '/'; // Redirect to home or login page
                   } else {
+                    $("#google-sign-in-btn").show(); // Redirect to home or login page
                     // If no user is signed in
                     alert("You must be signed in as an admin to view this page.");
-                    window.location.href = '/'; // Redirect to home or login page
+                    // signInWithGoogle(); // Redirect to home or login page
                   }
                 case 28:
                 case "end":

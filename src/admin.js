@@ -260,11 +260,11 @@ emailjs.init(process.env.EMAILJS_API_KEY);
       } else if (user) {
         // If the user is signed in but not an admin
         alert("You are not authorized to view this page.");
-        window.location.href = '/'; // Redirect to home or login page
       } else {
+        $("#google-sign-in-btn").show() // Redirect to home or login page
         // If no user is signed in
         alert("You must be signed in as an admin to view this page.");
-        window.location.href = '/'; // Redirect to home or login page
+        // signInWithGoogle(); // Redirect to home or login page
       }
     });
   });
