@@ -24,7 +24,6 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 // Initialize EmailJS
-emailjs.init(process.env.EMAILJS_API_KEY);
 
 
 
@@ -35,7 +34,9 @@ emailjs.init(process.env.EMAILJS_API_KEY);
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      const adminEmailArr = process.env.ADMIN_EMAIL.split(",");
+      const adminEmailsRef = doc(db, "creds", "adminEmails");
+      const adminEmailsSnap = await getDoc(adminEmailsRef);
+      const adminEmailArr =adminEmailsSnap.data().emails
 
       // Check if the user is an admin (for example, by checking the email or UID)
       if (adminEmailArr.includes(user.email)) { // You can replace this with a list of admin emails
@@ -51,8 +52,10 @@ emailjs.init(process.env.EMAILJS_API_KEY);
   };
 
   // On Auth State Change (to keep track of logged-in user)
-  onAuthStateChanged(auth, (user) => {
-    const adminEmailArr = process.env.ADMIN_EMAIL.split(",");
+  onAuthStateChanged(auth, async (user) => {
+    const adminEmailsRef = doc(db, "creds", "adminEmails");
+      const adminEmailsSnap = await getDoc(adminEmailsRef);
+      const adminEmailArr =adminEmailsSnap.data().emails
 
     if (user && adminEmailArr.includes(user.email)) { // Replace with your admin email
       loadAdminData();
@@ -143,11 +146,20 @@ emailjs.init(process.env.EMAILJS_API_KEY);
         image_url: `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=${id}`
       };
 
+
+      const emailjsRef = doc(db, "creds", "emailjs");
+      const emailjsSnap = await getDoc(emailjsRef);
+      const emailjsConfig = emailjsSnap.data();
+
+      emailjs.init(emailjsConfig.EMAILJS_APIKEY);
+
       try {
-        const adminEmailArr = process.env.ADMIN_EMAIL.split(",");
+        const adminEmailsRef = doc(db, "creds", "adminEmails");
+      const adminEmailsSnap = await getDoc(adminEmailsRef);
+      const adminEmailArr =adminEmailsSnap.data().emails
 
         if (getAuth().currentUser && adminEmailArr.includes(getAuth().currentUser.email)) {
-          const response = await emailjs.send(process.env.EMAILJS_SERVICE_ID, process.env.EMAILJS_TEMPLATE_ID, templateParams);
+          const response = await emailjs.send(emailjsConfig.EMAILJS_SERVICEID, emailjsConfig.EMAILJS_TEMPLATEID, templateParams);
           console.log('Email sent successfully:', response);
 
           const personRef = doc(db, "members", id);
@@ -214,7 +226,9 @@ emailjs.init(process.env.EMAILJS_API_KEY);
   $(document).ready(async () => {
     // Firebase Auth state change listener to check if the user is signed in
     onAuthStateChanged(auth, async (user) => {
-      const adminEmailArr = process.env.ADMIN_EMAIL.split(",");
+      const adminEmailsRef = doc(db, "creds", "adminEmails");
+      const adminEmailsSnap = await getDoc(adminEmailsRef);
+      const adminEmailArr =adminEmailsSnap.data().emails
   
       if (user && adminEmailArr.includes(user.email)) {
         // User is signed in and is an admin, proceed with verification logic
