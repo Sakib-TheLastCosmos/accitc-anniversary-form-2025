@@ -41645,10 +41645,23 @@ var signInWithGoogle = /*#__PURE__*/function () {
   }
 });
 $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-  var data, DOM;
+  var data, DOM, updateButtonText;
   return _regeneratorRuntime().wrap(function _callee4$(_context4) {
     while (1) switch (_context4.prev = _context4.next) {
       case 0:
+        updateButtonText = function _updateButtonText() {
+          // Find the selected radio button
+          var selectedRadio = document.querySelector('input[type="radio"][name="r1"]:checked');
+          if (selectedRadio) {
+            // Get the corresponding price from the adjacent label
+            var priceText = selectedRadio.nextElementSibling.querySelector("p").textContent;
+
+            // Update the button text
+            console.log(priceText);
+            var paymentButton = document.querySelector('.button-2');
+            paymentButton.textContent = "Pay ".concat(priceText);
+          }
+        };
         // Google Sign-In Button Event
         $("#google-signin-btn").click(function (e) {
           e.preventDefault();
@@ -41666,7 +41679,9 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
         DOM = {
           button1: $(".button-1"),
           button2: $(".button-2"),
-          button3: $(".button-3")
+          button3: $(".button-3"),
+          radioButtons: document.querySelectorAll('input[type="radio"][name="r1"]'),
+          totalPayment: $("#total-payment")
         };
         DOM.button1.click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -41695,9 +41710,19 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
         $(".nagad").click(function () {
           data.payment_method = "nagad";
         });
-        DOM.button2.click(function () {
+        // Add event listeners to each radio button
+        DOM.radioButtons.forEach(function (radio) {
+          radio.addEventListener("change", updateButtonText);
+        });
+        DOM.button2.click(function (e) {
           data.platter = $("input[name='r1']:checked").val();
+          var selectedRadio = document.querySelector('input[type="radio"][name="r1"]:checked');
+          if (selectedRadio) {
+            var selectedAmount = parseFloat(selectedRadio.getAttribute("data-amount"));
+            data.amount = selectedAmount;
+          }
           goNext(DOM.button2);
+          DOM.totalPayment.html("Total Payment: ".concat(data.amount.toFixed(2), " BDT"));
         });
         DOM.button3.click(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var transIDsRef, transIDsSnap, transIDArr, transID, currentDate;
@@ -41760,7 +41785,7 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
             }
           }, _callee3, null, [[0, 26]]);
         })));
-      case 10:
+      case 12:
       case "end":
         return _context4.stop();
     }

@@ -72,18 +72,22 @@ const provider = new GoogleAuthProvider();
     const tableBody = document.querySelector("tbody");
 
     let index = 1;
-    let total_confirmed = 0, platter1 = 0, platter2 = 0, present = 0, absent = 0;
+    let total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, totalAmount = 0, present = 0, absent = 0;
 
     querySnapshot.forEach((doc) => {
+      
       const person = doc.data();
+
+      totalAmount += person.amount
 
       if (!person.status) person.status = "Absent";
 
       const row = document.createElement("tr");
 
       if (person.is_confirmed) total_confirmed++;
-      if (person.platter === 'Platter 1') platter1++;
-      if (person.platter === 'Platter 2') platter2++;
+      if (person.platter === 'Student') student++;
+      if (person.platter === 'Corporate') corporate++;
+      if (person.platter === 'Royal Thai') royalThai++;
       if (person.status == "Present") present++;
       else absent++;
 
@@ -97,6 +101,7 @@ const provider = new GoogleAuthProvider();
         <td><a href="${person.facebook}" target="_blank">Profile</a></td>
         <td>${person.platter}</td>
         <td>${person.date}</td>
+        <td>${person.amount} BDT</td>
         <td>${person.transaction_id}</td>
       `;
 
@@ -118,9 +123,10 @@ const provider = new GoogleAuthProvider();
 
     $('#total_reg').html(index - 1);
     $('#total_confirmed').html(total_confirmed);
-    $('#total_payment').html((550 * total_confirmed).toFixed(2));
-    $('#platter-1').html(platter1);
-    $('#platter-2').html(platter2);
+    $('#total_payment').html(totalAmount.toFixed(2));
+    $('#platter-1').html(student);
+    $('#platter-2').html(corporate);
+    $('#platter-3').html(royalThai)
     $('#total-present').html(present);
     $('#total-absent').html(absent);
 
@@ -142,6 +148,7 @@ const provider = new GoogleAuthProvider();
         email: person.email,
         platter: person.platter,
         date: person.date,
+        amount: person.amount,
         transaction_id: person.transaction_id,
         image_url: `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=${id}`
       };
@@ -259,6 +266,8 @@ const provider = new GoogleAuthProvider();
                 <p><strong>Email:</strong> ${person.email}</p>
                 <p><strong>Platter:</strong> ${person.platter}</p>
                 <p><strong>Date:</strong> ${person.date}</p>
+                <p><strong>Date:</strong> ${person.amount.toFixed(2)} BDT</p>
+
                 <p><strong>Transaction ID:</strong> ${person.transaction_id}</p>
               `);
             } catch (error) {

@@ -80,7 +80,9 @@ $(document).ready(async () => {
   const DOM = {
     button1: $(".button-1"),
     button2: $(".button-2"),
-    button3: $(".button-3")
+    button3: $(".button-3"),
+    radioButtons: document.querySelectorAll('input[type="radio"][name="r1"]'),
+    totalPayment: $("#total-payment")
   };
 
   DOM.button1.click(async () => {
@@ -106,9 +108,38 @@ $(document).ready(async () => {
     data.payment_method = "nagad";
   });
 
-  DOM.button2.click(() => {
+  function updateButtonText() {
+    // Find the selected radio button
+    const selectedRadio = document.querySelector('input[type="radio"][name="r1"]:checked');
+
+    if (selectedRadio) {
+        // Get the corresponding price from the adjacent label
+        const priceText = selectedRadio.nextElementSibling.querySelector("p").textContent;
+
+        // Update the button text
+        console.log(priceText)
+        const paymentButton = document.querySelector('.button-2');
+        paymentButton.textContent = `Pay ${priceText}`;
+    }
+  }
+
+  // Add event listeners to each radio button
+  DOM.radioButtons.forEach(radio => {
+      radio.addEventListener("change", updateButtonText);
+  });
+
+  DOM.button2.click(e => {
     data.platter = $("input[name='r1']:checked").val();
+
+    const selectedRadio = document.querySelector('input[type="radio"][name="r1"]:checked');
+    if (selectedRadio) {
+        const selectedAmount = parseFloat(selectedRadio.getAttribute("data-amount"));
+        data.amount = selectedAmount
+    }
+
     goNext(DOM.button2);
+
+    DOM.totalPayment.html(`Total Payment: ${data.amount.toFixed(2)} BDT`)
   });
 
   DOM.button3.click(async () => {

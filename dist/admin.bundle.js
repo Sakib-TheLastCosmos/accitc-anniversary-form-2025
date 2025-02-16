@@ -41938,7 +41938,7 @@ var signInWithGoogle = /*#__PURE__*/function () {
 // Function to load admin data
 var loadAdminData = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-    var querySnapshot, tableBody, index, total_confirmed, platter1, platter2, present, absent;
+    var querySnapshot, tableBody, index, total_confirmed, student, corporate, royalThai, totalAmount, present, absent;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
@@ -41948,16 +41948,18 @@ var loadAdminData = /*#__PURE__*/function () {
           querySnapshot = _context5.sent;
           tableBody = document.querySelector("tbody");
           index = 1;
-          total_confirmed = 0, platter1 = 0, platter2 = 0, present = 0, absent = 0;
+          total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, totalAmount = 0, present = 0, absent = 0;
           querySnapshot.forEach(function (doc) {
             var person = doc.data();
+            totalAmount += person.amount;
             if (!person.status) person.status = "Absent";
             var row = document.createElement("tr");
             if (person.is_confirmed) total_confirmed++;
-            if (person.platter === 'Platter 1') platter1++;
-            if (person.platter === 'Platter 2') platter2++;
+            if (person.platter === 'Student') student++;
+            if (person.platter === 'Corporate') corporate++;
+            if (person.platter === 'Royal Thai') royalThai++;
             if (person.status == "Present") present++;else absent++;
-            row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
+            row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.amount, " BDT</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
             if (person.is_confirmed) {
               row.innerHTML += "<td class='payment_confirmed' style='color: green; font-weight: 600;'>Confirmed</td>";
             } else {
@@ -41970,9 +41972,10 @@ var loadAdminData = /*#__PURE__*/function () {
           });
           $('#total_reg').html(index - 1);
           $('#total_confirmed').html(total_confirmed);
-          $('#total_payment').html((550 * total_confirmed).toFixed(2));
-          $('#platter-1').html(platter1);
-          $('#platter-2').html(platter2);
+          $('#total_payment').html(totalAmount.toFixed(2));
+          $('#platter-1').html(student);
+          $('#platter-2').html(corporate);
+          $('#platter-3').html(royalThai);
           $('#total-present').html(present);
           $('#total-absent').html(absent);
 
@@ -42005,6 +42008,7 @@ var loadAdminData = /*#__PURE__*/function () {
                       email: person.email,
                       platter: person.platter,
                       date: person.date,
+                      amount: person.amount,
                       transaction_id: person.transaction_id,
                       image_url: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://sakib-thelastcosmos.github.io/accitc-anniversary-form-2025/dist/admin.html?verify=".concat(id)
                     };
@@ -42133,7 +42137,7 @@ var loadAdminData = /*#__PURE__*/function () {
               return _ref5.apply(this, arguments);
             };
           }());
-        case 16:
+        case 17:
         case "end":
           return _context5.stop();
       }
@@ -42190,7 +42194,7 @@ $(document).ready(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntim
                     status: "Present"
                   });
                 case 18:
-                  $("body").html("\n                <h1 style=\"color: green;\">Registration Confirmed</h1>\n                <p><strong>Name:</strong> ".concat(person.name, "</p>\n                <p><strong>Session:</strong> ").concat(person.session, "</p>\n                <p><strong>Post:</strong> ").concat(person.post, "</p>\n                <p><strong>Phone:</strong> ").concat(person.phone, "</p>\n                <p><strong>Email:</strong> ").concat(person.email, "</p>\n                <p><strong>Platter:</strong> ").concat(person.platter, "</p>\n                <p><strong>Date:</strong> ").concat(person.date, "</p>\n                <p><strong>Transaction ID:</strong> ").concat(person.transaction_id, "</p>\n              "));
+                  $("body").html("\n                <h1 style=\"color: green;\">Registration Confirmed</h1>\n                <p><strong>Name:</strong> ".concat(person.name, "</p>\n                <p><strong>Session:</strong> ").concat(person.session, "</p>\n                <p><strong>Post:</strong> ").concat(person.post, "</p>\n                <p><strong>Phone:</strong> ").concat(person.phone, "</p>\n                <p><strong>Email:</strong> ").concat(person.email, "</p>\n                <p><strong>Platter:</strong> ").concat(person.platter, "</p>\n                <p><strong>Date:</strong> ").concat(person.date, "</p>\n                <p><strong>Date:</strong> ").concat(person.amount.toFixed(2), " BDT</p>\n\n                <p><strong>Transaction ID:</strong> ").concat(person.transaction_id, "</p>\n              "));
                   _context6.next = 25;
                   break;
                 case 21:

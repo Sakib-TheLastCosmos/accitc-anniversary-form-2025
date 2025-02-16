@@ -55,7 +55,15 @@ tr:nth-child(even) {
 .confirm_btn {
     padding: 5px 10px;
     cursor: pointer;
-    background: #d12053;
+    background: green;
+    border: 1px solid black;
+    color: #fff;
+}
+
+.delete_btn {
+    background-color: red;
+    padding: 5px 10px;
+    cursor: pointer;
     border: 1px solid black;
     color: #fff;
 }

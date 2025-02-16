@@ -70,67 +70,77 @@
 
             <input type="text" name="mail" id="mail" placeholder="Email Address">
 
-            <input type="text" name="fb" id="fb" placeholder="Facebook ID Link">
+            <input type="text" name="fb" id="fb" placeholder="Facebook ID Link (e.g: www.facebook.com/accitc)">
 
 
 
             <div class="event-details">
                 <div class="date">
-                    <i class="fas fa-calendar-alt"></i> <span>15 Feb 2025</span>
+                    <i class="fas fa-calendar-alt"></i> <span>21 Feb 2025</span>
                 </div>
                 <div class="time">
-                    <i class="fas fa-clock"></i> <span>02:30 PM</span>
+                    <i class="fas fa-clock"></i> <span>03:00 PM</span>
                 </div>
             </div>
 
             <div class="place">
-              <i class="fas fa-map-marker-alt"></i> <span>Hawa Rooftop Restaurant, Mirpur 12</span>
+              <i class="fas fa-map-marker-alt"></i> <span>Water Garden Restaurant, Mirpur 14</span>
           </div>
 
               <div class="button button-1">Next</div>
             </fieldset>
+
+
+
             <fieldset class="section">
-              <h3>Account Type</h3>
-              <div class="row cf">
+              <h3>Choose Platter</h3>
+              <div class="row cf" style="display: flex; align-items: center; justify-content: space-between;">
 
-                <img class="six col" src="assets/images/1_1.jpg" alt="">
-                <img class="six col" src="assets/images/2.jpg" alt="">
+                <div class="seven col">
+                  <img style="width: 100%;" src="assets/images/menu.jpeg" alt="">
+                </div>
 
-
-                <div class="six col">
-                  <input type="radio" name="r1" id="r1" value="Platter 1" checked>
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 20px;" class="four col">
+                  <input type="radio" name="r1" id="r1" value="Student" data-amount="350" checked>
                   <label for="r1">
-                    <h3>Platter 1</h3>
+                    <h3>Student</h3>
 
-                    <p>Chicken Fried Rice with sizzling 2:1</p>
+                    <p>350.00 BDT</p>
                   </label>
-                </div>
 
-
-                <div class="six col" style="margin-bottom: 20px;">
-                  <input type="radio" name="r1" id="r2" value="Platter 2">
+                  <input type="radio" name="r1" id="r2" value="Corporate" data-amount="450">
                   <label for="r2">
-                    <h3>Platter 2</h3>
+                    <h3>Corporate</h3>
 
-                    <p>Chicken Hyderabadi Biriyani</p>
+                    <p>450.00 BDT</p>
+                  </label>
+
+                  <input type="radio" name="r1" id="r3" value="Royal Thai" data-amount="550">
+                  <label for="r3">
+                    <h3>Royal Thai</h3>
+
+                    <p>550.00 BDT</p>
                   </label>
                 </div>
-
-                <h5>NB: Total cost include the platter, cakes, drinks, and decorations.</h5>
 
 
 
               </div>
+
+              <h5>NB: Cost for cake and decorations is also added with the total cost</h5>
              
               <div class="payment">
                 <!-- <h4>Pay using : </h4> -->
 
-                <button class="button bkash button-2">Pay 550.00 BDT</button>
+                <button class="button bkash button-2">Pay 350.00 BDT</button>
               </div>
 
             </fieldset>
+
+
+
             <fieldset class="section">
-              <h3 style="color: #d12053; font-weight: 600;">Total Payment: 550.00 BDT</h3>
+              <h3 id="total-payment" style="color: #d12053; font-weight: 600;">Total Payment: 550.00 BDT</h3>
               <p>Scan this QR code</p>
               <img class="payment_img" style="width: 40%;" src="assets/images/bkash_qr.jpeg" alt="">
 
@@ -139,6 +149,10 @@
               <input type="text" name="transactionID" id="transID" placeholder="Bkash Transaction ID">
               <input class="submit button button-3" type="submit" value="Submit">
             </fieldset>
+
+
+
+
             <fieldset class="section" style="display: flex; flex-direction: column; align-items: center;">
               <h3 style="color: #3498db; font-weight: 600;">Your Registration has been completed!</h3>
               <p style="width: 70%;">You will be emailed within 24 hours about the event pass and necessary details. We are looking forward to seeing you at our grand anniversary of 10 years of ACCITC!</p>
