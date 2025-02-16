@@ -379,3 +379,56 @@ i {
     color: #3498db;
   }
   
+  .choose-platter {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .choose-platter .four {
+    height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 20px;
+  }
+
+
+  @media (max-width: 500px) {
+    .steps {
+      white-space: nowrap;   /* Prevents text from wrapping to the next line */
+      overflow-x: scroll;      /* Enables horizontal scrolling */
+      width: 100%;           /* Adjust width as needed */
+      display: block; 
+    }
+    .steps li {
+      margin-right: 2px !important;
+      font-size: 0.7rem;
+    }
+
+    .choose-platter {
+      flex-direction: column !important;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      width: 100vw;
+    }
+
+    .form-wrapper .section {
+      padding: 0 !important;
+      padding-bottom: 40px !important;
+    }
+
+    .choose-platter .seven {
+      width: 90%;
+    }
+
+    .choose-platter .seven img {
+      width: 90% !important;
+    }
+
+    .choose-platter .four {
+      flex-direction: column;
+      padding: 20px 0;
+    }
+
+    .form-wrapper input[type="radio"] + label {
+      width: 60vw;
+      max-width: 60vw;
+      font-size: 0.8rem;
+    }
+  }
