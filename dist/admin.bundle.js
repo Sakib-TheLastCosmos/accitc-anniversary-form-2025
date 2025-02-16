@@ -41938,7 +41938,7 @@ var signInWithGoogle = /*#__PURE__*/function () {
 // Function to load admin data
 var loadAdminData = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-    var querySnapshot, tableBody, index, total_confirmed, student, corporate, royalThai, totalAmount, present, absent;
+    var querySnapshot, tableBody, index, total_confirmed, student, corporate, royalThai, biriyani, totalAmount, present, absent;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
@@ -41948,7 +41948,7 @@ var loadAdminData = /*#__PURE__*/function () {
           querySnapshot = _context5.sent;
           tableBody = document.querySelector("tbody");
           index = 1;
-          total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, totalAmount = 0, present = 0, absent = 0;
+          total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, biriyani = 0, totalAmount = 0, present = 0, absent = 0;
           querySnapshot.forEach(function (doc) {
             var person = doc.data();
             totalAmount += person.amount;
@@ -41958,6 +41958,7 @@ var loadAdminData = /*#__PURE__*/function () {
             if (person.platter === 'Student') student++;
             if (person.platter === 'Corporate') corporate++;
             if (person.platter === 'Royal Thai') royalThai++;
+            if (person.platter === 'Beef Keema Biriyani') biriyani++;
             if (person.status == "Present") present++;else absent++;
             row.innerHTML = "\n        <td>".concat(index, "</td>\n        <td>").concat(person.name, "</td>\n        <td>").concat(person.session, "</td>\n        <td>").concat(person.post, "</td>\n        <td>").concat(person.phone, "</td>\n        <td>").concat(person.email, "</td>\n        <td><a href=\"").concat(person.facebook, "\" target=\"_blank\">Profile</a></td>\n        <td>").concat(person.platter, "</td>\n        <td>").concat(person.date, "</td>\n        <td>").concat(person.amount, " BDT</td>\n        <td>").concat(person.transaction_id, "</td>\n      ");
             if (person.is_confirmed) {
@@ -41976,6 +41977,7 @@ var loadAdminData = /*#__PURE__*/function () {
           $('#platter-1').html(student);
           $('#platter-2').html(corporate);
           $('#platter-3').html(royalThai);
+          $('#platter-4').html(biriyani);
           $('#total-present').html(present);
           $('#total-absent').html(absent);
 
@@ -42137,7 +42139,7 @@ var loadAdminData = /*#__PURE__*/function () {
               return _ref5.apply(this, arguments);
             };
           }());
-        case 17:
+        case 18:
         case "end":
           return _context5.stop();
       }

@@ -72,7 +72,7 @@ const provider = new GoogleAuthProvider();
     const tableBody = document.querySelector("tbody");
 
     let index = 1;
-    let total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, totalAmount = 0, present = 0, absent = 0;
+    let total_confirmed = 0, student = 0, corporate = 0, royalThai = 0, biriyani=0, totalAmount = 0, present = 0, absent = 0;
 
     querySnapshot.forEach((doc) => {
       
@@ -88,6 +88,7 @@ const provider = new GoogleAuthProvider();
       if (person.platter === 'Student') student++;
       if (person.platter === 'Corporate') corporate++;
       if (person.platter === 'Royal Thai') royalThai++;
+      if (person.platter === 'Beef Keema Biriyani') biriyani++;
       if (person.status == "Present") present++;
       else absent++;
 
@@ -127,6 +128,7 @@ const provider = new GoogleAuthProvider();
     $('#platter-1').html(student);
     $('#platter-2').html(corporate);
     $('#platter-3').html(royalThai)
+    $('#platter-4').html(biriyani)
     $('#total-present').html(present);
     $('#total-absent').html(absent);
 
